@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ceramics — Emma Garman</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav fade-in">
+    <a class="nav-name" href="index.html">Emma Garman</a>
+    <ul class="nav-links">
+      <li><a href="painting.html">Painting</a></li>
+      <li><a href="ceramics.html" class="active">Ceramics</a></li>
+      <li><a href="photography.html">Photography</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="emma-garman-cv.pdf" target="_blank">CV</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>Ceramics</h1>
+    <p>Sculpture and ceramic works</p>
+  </div>
+
+  <!-- Work Grid -->
+  <section class="section work" style="padding-top: 2rem;">
+    <div class="container fade-in">
+      <div class="work-grid">
+
+        <div class="work-card"
+          data-img="images/bleached.png"
+          data-title="Bleached"
+          data-meta="Ceramic sculpture · 2025"
+          data-desc="Unfired clay sculpture of a coral reef. Inspired by the coral organisms I conducted scientific research on in the Great Barrier Reef of Australia in 2024. Sculpture intentionally left &quot;bleached&quot;.">
+          <div class="work-card-img"><img src="images/bleached.png" alt="Bleached" /></div>
+          <div class="work-info">
+            <h3>Bleached</h3>
+            <p>Ceramic sculpture · 2025</p>
+          </div>
+        </div>
+
+        <div class="work-card"
+          data-img="images/worlds-within-worlds.png"
+          data-title="Worlds Within Worlds"
+          data-meta="Ceramic sculpture · 2025"
+          data-desc="Worlds Within Worlds is a ceramic sculpture inspired by the unseen worlds that exist within tidepools. Micro ecosystems exist within larger systems; organisms in constant dynamic interaction, hidden beneath the surface.">
+          <div class="work-card-img"><img src="images/worlds-within-worlds.png" alt="Worlds Within Worlds" /></div>
+          <div class="work-info">
+            <h3>Worlds Within Worlds</h3>
+            <p>Ceramic sculpture · 2025</p>
+          </div>
+        </div>
+
+        <div class="work-card"
+          data-img="images/white-sculpture.jpeg"
+          data-title="[ Title ]"
+          data-meta="Ceramic sculpture · [ Year ]"
+          data-gallery="images/white-sculpture-detail.jpeg"
+          data-desc="">
+          <div class="work-card-img"><img src="images/white-sculpture.jpeg" alt="Ceramic sculpture" /></div>
+          <div class="work-info">
+            <h3>[ Title ]</h3>
+            <p>Ceramic sculpture · [ Year ]</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 Emma Garman</p>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose">&times;</button>
+    <div class="lightbox-inner">
+      <div class="lb-slider">
+        <div class="lb-img-wrap">
+          <button class="lb-prev" id="lbPrev">&#8249;</button>
+          <img id="lbImg" src="" alt="" />
+          <button class="lb-next" id="lbNext">&#8250;</button>
+        </div>
+        <div class="lb-dots" id="lbDots"></div>
+      </div>
+      <div class="lightbox-info">
+        <h3 id="lbTitle"></h3>
+        <p class="lightbox-meta" id="lbMeta"></p>
+        <p class="lightbox-desc" id="lbDesc"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

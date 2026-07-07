@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Work — Emma Garman</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <a class="nav-name" href="index.html">Emma Garman</a>
+    <ul class="nav-links">
+      <li><a href="painting.html">Painting</a></li>
+      <li><a href="ceramics.html">Ceramics</a></li>
+      <li><a href="photography.html">Photography</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="emma-garman-cv.pdf" target="_blank">CV</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Artwork Content -->
+  <div class="artwork-page-content">
+
+    <a id="backLink" href="index.html#work" class="artwork-back-link">← All Work</a>
+
+    <div class="artwork-header">
+      <h1 id="artTitle"></h1>
+    </div>
+
+    <div class="artwork-img-full-wrap">
+      <div class="artwork-img-container">
+        <button class="art-arrow art-arrow-prev" id="artImgPrev">&#8249;</button>
+        <img id="artMainImg" src="" alt="" class="artwork-img-full" />
+        <button class="art-arrow art-arrow-next" id="artImgNext">&#8250;</button>
+        <button class="art-zoom-btn" id="artZoomBtn" aria-label="View full size">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/>
+            <line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/>
+          </svg>
+        </button>
+      </div>
+      <div class="artwork-thumbs" id="artThumbs"></div>
+    </div>
+
+    <div class="artwork-body">
+      <p class="artwork-meta" id="artMeta"></p>
+      <div class="artwork-desc" id="artDesc"></div>
+      <div class="artwork-nav-row">
+        <a id="artPrev" href="#" class="artwork-nav-link">← Previous</a>
+        <a id="artNext" href="#" class="artwork-nav-link">Next →</a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Zoom Modal -->
+  <div class="art-zoom-modal" id="artZoomModal">
+    <button class="art-zoom-close" id="artZoomClose">×</button>
+    <img id="artZoomImg" src="" alt="" />
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 Emma Garman</p>
+  </footer>
+
+  <script>
+    const WORKS = [
+      {
+        id: 'entangles',
+        title: 'Entangles',
+        meta: 'Oil on canvas · 4 × 3 ft · 2025',
+        img: 'images/entangles.png',
+        gallery: [],
+        desc: `At the tide's edge, life entangles. Algae, seaweed, and marine creatures weave themselves into an interconnected web of symbiosis. Above them, a human figure appears only as a reflection, a lock of hair dangling into the tidepool. The water answers with a gentle ripple. In this moment of contact, boundaries between "human" and "nature" loosen.\n\nInspired by the relationships of reciprocity embedded within marine ecosystems, we can reimagine humanity's relationship to the rest of the natural world. Here, the ocean becomes our teacher, offering models for living with—rather than apart from—the world around.`
+      },
+      {
+        id: 'at-the-tides-edge',
+        title: "At the Tide's Edge",
+        meta: 'Watercolor on paper · 2026',
+        img: 'images/at-the-tides-edge.jpeg',
+        gallery: [],
+        desc: `At the Tide's Edge explores the fluid, dynamic world of tidepool ecosystems. Drawing upon a series of plein-air studies the artist created while sitting in the tidepools of Southern California, this abstract watercolor painting combines field notes, sketches, and fleeting observations into a single, cohesive composition. Forms dissolve and merge (seaweed drifting across anemones, water folding over rock), allowing varied elements to blend and interact as they do in the natural world.\n\nBy collecting moments of quiet reciprocity, this piece encourages attention to subtle, interconnected relationships that sustain these environments. At the Tide's Edge is both a meditation on the ecological beauty of tidepools and a call to more closely observe, consider, and care for these delicate ecosystems flourishing with life.`
+      },
+      {
+        id: 'field-notes',
+        title: 'Field Notes',
+        meta: 'Watercolor on paper · 2026',
+        img: 'images/field-notes.jpeg',
+        gallery: ['images/field-notes-detail-1.jpeg','images/field-notes-detail-2.jpeg','images/field-notes-detail-3.jpeg','images/field-notes-detail-4.jpeg'],
+        desc: `Immersed in tidepools and painting with seawater, the artist created Field Notes. The papers became her tidal diary, filled with quick, gestural impressions of fleeting moments. She observed seaweed swaying in the ocean's current, creatures emerging from crevices, and colors coming alive as light danced across the water. From microscopic to macroscopic, Field Notes layers moments of symbiotic relationships unfolding in tidepool ecosystems.\n\nEach field note carries a mark of the ocean, permanently etched with its touch: salty water mixed with pigment, grains of sand embedded in paper, rogue waves washing paint from the page. Field Notes creates a dialogue between art and science, combining the approaches of naturalists and artists to more closely observe life in and around the surface. In both practice and result, the collection of tidepool moments in Field Notes urges us to think about humans' relationship to the natural world.`
+      },
+      {
+        id: 'drowning',
+        title: 'Drowning',
+        meta: 'Oil on canvas · 2024',
+        img: 'images/drowning.jpeg',
+        gallery: [],
+        desc: `This piece conveys the oversexualization of women. The subject is intentionally blended at the ends of her body. Her feet, hands, and most significantly, her face, fluidly fade into the background, ultimately representing the unimportance of her identity to society; sexualized and objectified.`
+      },
+      {
+        id: 'faceless',
+        title: 'Faceless',
+        meta: 'Oil on canvas · 2022',
+        img: 'images/faceless.png',
+        gallery: [],
+        desc: `The female figure is seen as faceless; her identity unimportant to society. How can we unravel the subconscious manifestations of the sexism deeply ingrained in our culture? This piece expresses my frustration with the sexualization of women. My art demands that we are more than just our bodies.`
+      },
+      {
+        id: 'conversation-between-colors',
+        title: 'Conversation Between Color',
+        meta: 'Oil on paper · 2025',
+        img: 'images/conversation-between-colors.png',
+        gallery: [],
+        desc: `Conversation between color is an abstract expression of sensation; music, color, and texture. Made inspired by my synesthesia, and the strong associations between music and color, in which I often feel as if colors dance together in a rhythmic conversation with one another.`
+      },
+      {
+        id: 'narcissus-for-nana',
+        title: 'Narcissus For Nana',
+        meta: 'Watercolor on paper · 2026',
+        img: 'images/narcissus-for-nana.png',
+        gallery: [],
+        desc: `An ode to my Nana, for her favorite flower: the Narcissus.`
+      },
+      {
+        id: 'collected-shells',
+        title: 'Collected Shells',
+        meta: 'Watercolor on paper · 2026',
+        img: 'images/collected-shells.png',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'clothing-line',
+        title: 'Clothing Line',
+        meta: 'Watercolor on paper',
+        img: 'images/clothing-line.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'bleached',
+        title: 'Bleached',
+        meta: 'Ceramic sculpture · 2025',
+        img: 'images/bleached.png',
+        gallery: [],
+        desc: `Unfired clay sculpture of a coral reef. Inspired by the coral organisms I conducted scientific research on in the Great Barrier Reef of Australia in 2024. Sculpture intentionally left "bleached".`
+      },
+      {
+        id: 'worlds-within-worlds',
+        title: 'Worlds Within Worlds',
+        meta: 'Ceramic sculpture · 2025',
+        img: 'images/worlds-within-worlds.png',
+        gallery: [],
+        desc: `Worlds Within Worlds is a ceramic sculpture inspired by the unseen worlds that exist within tidepools. Micro ecosystems exist within larger systems; organisms in constant dynamic interaction, hidden beneath the surface.`
+      },
+      {
+        id: 'white-sculpture',
+        title: '[ Title ]',
+        meta: 'Ceramic sculpture · [ Year ]',
+        img: 'images/white-sculpture.jpeg',
+        gallery: ['images/white-sculpture-detail.jpeg'],
+        desc: ''
+      },
+      {
+        id: 'flores-in-vita-et-morte',
+        title: 'Flores in Vita et Morte',
+        meta: 'Collaged photography · 2025',
+        img: 'images/flores-in-vita-et-morte.png',
+        gallery: [],
+        desc: `Photographed life cycle of Prunus serrulata flower, from bud, to bloom, to wilt, illustrating the beauty of temporality. Relationships, people, places, flowers, and life itself; all things eventually come to an end. The ephemeral quality is exactly what makes it so beautiful; from blossom to decay.`
+      },
+      {
+        id: 'pressed-flowers-1',
+        title: 'Pressed Flowers (1)',
+        meta: 'Pressed flowers',
+        img: 'images/pressed-flowers-1.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'pressed-flowers-2',
+        title: 'Pressed Flowers (2)',
+        meta: 'Pressed flowers',
+        img: 'images/pressed-flowers-2.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'little-people-big-world',
+        title: 'Little People, Big World',
+        meta: 'Photography · 2025',
+        img: 'images/little-people-big-world.png',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'room-scene',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/room-scene.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'duckling',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/duckling.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'oranges',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/oranges.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'portrait-red-blue',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/portrait-red-blue.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'seated-figure',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/seated-figure.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'figure-vines-flower',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/figure-vines-flower.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'high-maintenance-collage',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/high-maintenance-collage.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'abstract-figure-colorful',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/abstract-figure-colorful.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'boxer-flowers',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/boxer-flowers.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {
+        id: 'my-body-my-choice',
+        title: '[ Title ]',
+        meta: '[ Medium ] · [ Year ]',
+        img: 'images/my-body-my-choice.jpeg',
+        gallery: [],
+        desc: ''
+      },
+      {id:'lwbp-1',title:'Little People, Big World',meta:'Photography · 2025',img:'images/lwbp-1.jpeg',gallery:[],seriesIds:['lwbp-1','lwbp-2','lwbp-3','lwbp-4','lwbp-5','lwbp-6','lwbp-7','lwbp-8','lwbp-9'],desc:''},
+      {id:'lwbp-2',title:'Little People, Big World',meta:'Photography · 2025',img:'images/lwbp-2.jpeg',gallery:[],seriesIds:['lwbp-1','lwbp-2','lwbp-3','lwbp-4','lwbp-5','lwbp-6','lwbp-7','lwbp-8','lwbp-9'],desc:''},
+      {id:'lwbp-3',title:'Little People, Big World',meta:'Photography · 2025',img:'images/lwbp-3.jpeg',gallery:[],seriesIds:['lwbp-1','lwbp-2','lwbp-3','lwbp-4','lwbp-5','lwbp-6','lwbp-7','lwbp-8','lwbp-9'],desc:''},
+      {id:'lwbp-4',title:'Little People, Big World',meta:'Photography · 2025',img:'images/lwbp-4.jpeg',gallery:[],seriesIds:['lwbp-1','lwbp-2','lwbp-3','lwbp-4','lwbp-5','lwbp-6','lwbp-7','lwbp-8','lwbp-9'],desc:''},
+      {id:'lwbp-5',title:'Little People, Big World',meta:'Photography · 2025',img:'images/lwbp-5.jpeg',gallery:[],seriesIds:['lwbp-1','lwbp-2','lwbp-3','lwbp-4','lwbp-5','lwbp-6','lwbp-7','lwbp-8','lwbp-9'],desc:''},
+      {id:'lwbp-6',title:'Little People, Big World',meta:'Photography · 2025',img:'images/lwbp-6.jpeg',gallery:[],seriesIds:['lwbp-1','lwbp-2','lwbp-3','lwbp-4','lwbp-5','lwbp-6','lwbp-7','lwbp-8','lwbp-9'],desc:''},
+      {id:'lwbp-7',title:'Little People, Big World',meta:'Photography · 2025',img:'images/lwbp-7.jpeg',gallery:[],seriesIds:['lwbp-1','lwbp-2','lwbp-3','lwbp-4','lwbp-5','lwbp-6','lwbp-7','lwbp-8','lwbp-9'],desc:''},
+      {id:'lwbp-8',title:'Little People, Big World',meta:'Photography · 2025',img:'images/lwbp-8.jpeg',gallery:[],seriesIds:['lwbp-1','lwbp-2','lwbp-3','lwbp-4','lwbp-5','lwbp-6','lwbp-7','lwbp-8','lwbp-9'],desc:''},
+      {id:'lwbp-9',title:'Little People, Big World',meta:'Photography · 2025',img:'images/lwbp-9.jpeg',gallery:[],seriesIds:['lwbp-1','lwbp-2','lwbp-3','lwbp-4','lwbp-5','lwbp-6','lwbp-7','lwbp-8','lwbp-9'],desc:''},
+      {id:'bw-1',title:'Black and White Darkroom Photography',meta:'35mm film · 2025',img:'images/bw-1.jpeg',gallery:[],desc:''},
+      {id:'bw-2',title:'Black and White Darkroom Photography',meta:'35mm film · 2025',img:'images/bw-2.jpeg',gallery:[],desc:''},
+      {id:'bw-3',title:'Black and White Darkroom Photography',meta:'35mm film · 2025',img:'images/bw-3.jpeg',gallery:[],desc:''},
+      {id:'bw-4',title:'Black and White Darkroom Photography',meta:'35mm film · 2025',img:'images/bw-4.jpeg',gallery:[],desc:''},
+      {id:'bw-5',title:'Black and White Darkroom Photography',meta:'35mm film · 2025',img:'images/bw-5.jpeg',gallery:[],desc:''},
+      {id:'bw-6',title:'Black and White Darkroom Photography',meta:'35mm film · 2025',img:'images/bw-6.jpeg',gallery:[],desc:''},
+      {id:'bw-7',title:'Black and White Darkroom Photography',meta:'35mm film · 2025',img:'images/bw-7.jpeg',gallery:[],desc:''},
+      {id:'bw-8',title:'Black and White Darkroom Photography',meta:'35mm film · 2025',img:'images/bw-8.jpeg',gallery:[],desc:''}
+    ];
+
+    // Back link — always goes to the page the user came from
+    const params = new URLSearchParams(window.location.search);
+    const fromParam = params.get('from');
+    if (fromParam) {
+      document.getElementById('backLink').href = decodeURIComponent(fromParam);
+    }
+
+    // Load work
+    const workId = params.get('work');
+    const idx = WORKS.findIndex(w => w.id === workId);
+    const fromStr = fromParam ? '&from=' + encodeURIComponent(fromParam) : '';
+
+    function navigateTo(url) {
+      document.body.classList.add('page-exit');
+      setTimeout(() => { window.location.href = url; }, 220);
+    }
+
+    if (idx < 0) { window.location.href = 'index.html#work'; } else {
+      const work = WORKS[idx];
+      const allImgs = [work.img, ...(work.gallery || [])];
+
+      document.title = (work.title !== '[ Title ]' ? work.title : 'Work') + ' — Emma Garman';
+      document.getElementById('artMainImg').src = work.img;
+      document.getElementById('artMainImg').alt = work.title;
+      document.getElementById('artTitle').textContent = work.title;
+      document.getElementById('artMeta').textContent = work.meta;
+
+      const descEl = document.getElementById('artDesc');
+      if (work.desc) {
+        descEl.innerHTML = work.desc.split(/\n\n+/).map(p => '<p>' + p.trim() + '</p>').join('');
+      }
+
+      // Gallery arrows + thumbnails
+      let currentImgIdx = 0;
+      const mainImg = document.getElementById('artMainImg');
+      const prevBtn = document.getElementById('artImgPrev');
+      const nextBtn = document.getElementById('artImgNext');
+      const thumbsWrap = document.getElementById('artThumbs');
+      let thumbEls = [];
+
+      function showImg(i) {
+        currentImgIdx = ((i % allImgs.length) + allImgs.length) % allImgs.length;
+        mainImg.src = allImgs[currentImgIdx];
+        thumbEls.forEach((t, j) => t.classList.toggle('active', j === currentImgIdx));
+      }
+
+      if (allImgs.length > 1) {
+        prevBtn.addEventListener('click', () => showImg(currentImgIdx - 1));
+        nextBtn.addEventListener('click', () => showImg(currentImgIdx + 1));
+        allImgs.forEach((src, i) => {
+          const img = document.createElement('img');
+          img.src = src;
+          img.className = 'artwork-thumb' + (i === 0 ? ' active' : '');
+          img.alt = '';
+          img.addEventListener('click', () => showImg(i));
+          thumbsWrap.appendChild(img);
+          thumbEls.push(img);
+        });
+      } else if (work.seriesIds && work.seriesIds.length > 1) {
+        // Series: arrows navigate between sibling pages
+        const seriesIdx = work.seriesIds.indexOf(work.id);
+        const prevId = work.seriesIds[(seriesIdx - 1 + work.seriesIds.length) % work.seriesIds.length];
+        const nextId = work.seriesIds[(seriesIdx + 1) % work.seriesIds.length];
+        prevBtn.addEventListener('click', () => navigateTo('artwork.html?work=' + prevId + fromStr));
+        nextBtn.addEventListener('click', () => navigateTo('artwork.html?work=' + nextId + fromStr));
+      } else {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+      }
+
+      // Series thumbnails (navigate to sibling pages)
+      if (work.seriesIds && work.seriesIds.length > 1) {
+        work.seriesIds.forEach(sid => {
+          const sw = WORKS.find(w => w.id === sid);
+          if (!sw) return;
+          const img = document.createElement('img');
+          img.src = sw.img;
+          img.className = 'artwork-thumb' + (sw.id === work.id ? ' active' : '');
+          img.alt = sw.title;
+          img.addEventListener('click', () => navigateTo('artwork.html?work=' + sw.id + fromStr));
+          thumbsWrap.appendChild(img);
+        });
+      }
+
+      // Zoom modal
+      const zoomModal = document.getElementById('artZoomModal');
+      const zoomImg = document.getElementById('artZoomImg');
+      document.getElementById('artZoomBtn').addEventListener('click', () => {
+        zoomImg.src = allImgs[currentImgIdx];
+        zoomModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+      function closeZoom() { zoomModal.classList.remove('active'); document.body.style.overflow = ''; }
+      document.getElementById('artZoomClose').addEventListener('click', closeZoom);
+      zoomModal.addEventListener('click', e => { if (e.target === zoomModal) closeZoom(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeZoom(); });
+
+      // Back link
+      document.getElementById('backLink').addEventListener('click', e => {
+        e.preventDefault();
+        navigateTo(document.getElementById('backLink').href);
+      });
+
+      // Prev / Next artwork
+      const prevWork = WORKS[(idx - 1 + WORKS.length) % WORKS.length];
+      const nextWork = WORKS[(idx + 1) % WORKS.length];
+      const artPrev = document.getElementById('artPrev');
+      const artNext = document.getElementById('artNext');
+      artPrev.href = 'artwork.html?work=' + prevWork.id + fromStr;
+      artNext.href = 'artwork.html?work=' + nextWork.id + fromStr;
+      artPrev.addEventListener('click', e => { e.preventDefault(); navigateTo(artPrev.href); });
+      artNext.addEventListener('click', e => { e.preventDefault(); navigateTo(artNext.href); });
+    }
+  </script>
+</body>
+</html>
